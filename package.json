@@ -61,10 +61,7 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "chart.js": "^3.9.1",
-    "gsap": "^3.10.4",
-    "keen-slider": "^6.7.0",
-    "pixi.js": "^6.5.1",
+    "@esotericsoftware/spine-webgl": "^4.2.7",
     "ramda": "^0.28.0"
   }
 }

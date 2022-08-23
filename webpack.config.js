@@ -10,8 +10,7 @@ module.exports = (env, args) => {
     mode,
     target: ['browserslist'],
     entry: {
-      main: `./src/ts/main.ts`,
-      sample: `./src/ts/sample.ts`
+      main: `./src/ts/main.ts`
     },
     output: {
       filename: '[name].js',
