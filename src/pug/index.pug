@@ -8,6 +8,11 @@ block append link
   link(rel="stylesheet" href=`${path}assets/css/style.css`)
 block body
   .wrapper
-    canvas#canvas
+    .canvas-wrapper
+      canvas#canvas
+    p.caption
+      |Spine トランスフォームコンストレイントのテスト
+      br
+      |きりたんが描画されている枠内にマウスをホバーすると、きりたんがマウスに目線を合わせます
 block append script
   script(src=`${path}assets/js/main.js`)

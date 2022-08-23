@@ -35,21 +35,18 @@ export class SpineApp implements spine.SpineCanvasApp {
 
     if (this.skeleton instanceof spine.Skeleton) {
       // skeleton の大きさをセット
-      this.skeleton.scaleX = 0.5 * this.pixcelRato
-      this.skeleton.scaleY = 0.5 * this.pixcelRato
+      this.skeleton.scaleX = 0.75 * this.pixcelRato
+      this.skeleton.scaleY = 0.75 * this.pixcelRato
       // skeleton の位置を画面中央にセット
       this.skeleton.x = 0
       this.skeleton.y =
-        (-1 * Math.floor(this.skeleton.data.height * 0.5 * this.pixcelRato)) / 2
+        (-1 * Math.floor(this.skeleton.data.height * 1 * this.pixcelRato)) / 2
     }
 
     // skeleton 情報からアニメーション情報を取得
     const stateData = new spine.AnimationStateData(skeltonData)
     // アニメーションをセット
     this.state = new spine.AnimationState(stateData)
-    if (this.state instanceof spine.AnimationState) {
-      this.state.setAnimation(0, 'animation', true)
-    }
   }
 
   update = (canvas: spine.SpineCanvas, delta: number) => {
