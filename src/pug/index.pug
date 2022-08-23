@@ -7,9 +7,7 @@ block append meta
 block append link
   link(rel="stylesheet" href=`${path}assets/css/style.css`)
 block body
-  #wrapper.ly_wrapper
-    include ./_parts/_header
-    main.ly_main
-    include ./_parts/_footer
+  .wrapper
+    canvas#canvas
 block append script
   script(src=`${path}assets/js/main.js`)
