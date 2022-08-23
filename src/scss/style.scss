@@ -71,6 +71,19 @@
   width: 100vw;
 }
 
+.canvas-wrapper {
+  border-radius: 9999px;
+  border: 6px solid #fff;
+  outline: 4px solid #ddd;
+  height: 480px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+}
+
 #canvas {
   position: absolute;
   height: 100%;
