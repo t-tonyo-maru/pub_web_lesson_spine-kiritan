@@ -1,0 +1,70 @@
+{
+  "name": "template_web_frontend_with_npm-scripts",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "16.x"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%"
+  ],
+  "scripts": {
+    "start": "npm run clean && npm run build && run-p watch serve",
+    "build": "run-s clean copy:* build:*",
+    "build-prod": "run-s clean copy:* build-prod:pug build-prod:scss build-prod:postcss build-prod:webpack",
+    "watch": "run-p copy:* watch:*",
+    "build:pug": "NODE_ENV=development pug --out dist --basedir src/pug --hierarchy src/pug --pretty src/pug",
+    "build-prod:pug": "NODE_ENV=production pug --out dist --basedir src/pug --hierarchy src/pug --pretty src/pug",
+    "watch:pug": "NODE_ENV=development pug --out dist --basedir src/pug --hierarchy src/pug --pretty src/pug -w",
+    "build:scss": "sass src/scss:dist/assets/css/ --embed-sources --style=expanded",
+    "build-prod:scss": "sass src/scss:dist/assets/css/ --no-source-map --style=compressed",
+    "watch:scss": "sass src/scss:dist/assets/css/ --embed-sources --style=expanded -w",
+    "build:postcss": "postcss 'dist/assets/css/*.css' -d 'dist/assets/css/' -m",
+    "build-prod:postcss": "postcss 'dist/assets/css/*.css' -d 'dist/assets/css/' --no-map",
+    "watch:postcss": "postcss 'dist/assets/css/*.css' -d 'dist/assets/css/' -m -w",
+    "build:webpack": "webpack",
+    "build-prod:webpack": "webpack --mode=production",
+    "watch:webpack": "webpack -w",
+    "copy:static": "cpx 'src/static/**/*' 'dist/assets'",
+    "serve": "browser-sync start -s 'dist' -w --no-ui --no-ghost-mode",
+    "clean": "rimraf dist",
+    "test": "jest",
+    "format": "prettier --write src/**/*.{js,ts,json,scss}",
+    "html-validate": "npx html-validate 'dist/**/*.html'"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/node": "^17.0.5",
+    "@types/ramda": "^0.27.64",
+    "autoprefixer": "^10.4.1",
+    "browser-sync": "^2.26.5",
+    "cpx": "^1.5.0",
+    "dotenv-webpack": "^8.0.0",
+    "html-validate": "^7.1.2",
+    "jest": "^27.1.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.5",
+    "postcss-cli": "^9.1.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "prettier": "^2.6.2",
+    "pug": "^3.0.2",
+    "pug-cli": "github:pugjs/pug-cli#master",
+    "rimraf": "^3.0.2",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "ts-jest": "^27.0.5",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.2",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "chart.js": "^3.9.1",
+    "gsap": "^3.10.4",
+    "keen-slider": "^6.7.0",
+    "pixi.js": "^6.5.1",
+    "ramda": "^0.28.0"
+  }
+}

@@ -1,0 +1,45 @@
+@use '../../foundation/variable/color' as *;
+
+.el_btn {
+  background-color: $colorKey;
+  border: 2px solid transparent;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.125rem;
+  max-width: 100%;
+  outline: none;
+  padding: 20px 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.25s;
+  width: 300px;
+
+  &:focus,
+  &:hover {
+    background-color: #fff;
+    border-color: currentColor;
+    color: $colorKey;
+  }
+
+  &#{&}__round {
+    border-radius: 10px;
+  }
+
+  &#{&}__large {
+    font-size: 1.375rem;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 340px;
+  }
+
+  &#{&}__waring {
+    background-color: #ffdb4a;
+    color: rgba(0, 0, 0, 0.7);
+    &:focus,
+    &:hover {
+      background-color: #fff;
+      border-color: currentColor;
+      color: #ffdb4a;
+    }
+  }
+}

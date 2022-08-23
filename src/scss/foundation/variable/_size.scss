@@ -1,0 +1,21 @@
+// サイズ
+// デバイス
+$spDesignWidth: 750;
+
+$spMaxWidth: 568px;
+$tabMinWidth: $spMaxWidth + 1;
+$tabMaxWidth: 1024px;
+
+// スペース
+$basicSpace: 40px;
+$spaceSm: $basicSpace * 0.5;
+$spaceMd: $basicSpace;
+$spaceLg: $basicSpace * 1.5;
+$spaceXl: $basicSpace * 2;
+
+// ガーター
+$basicGatter: 30px;
+$gatterSm: $basicGatter * 0.5;
+$gatterMd: $basicGatter;
+$gatterLg: $basicGatter * 1.5;
+$gatterXl: $basicGatter * 2;
