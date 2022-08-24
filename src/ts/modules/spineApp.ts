@@ -83,6 +83,8 @@ export class SpineApp implements spine.SpineCanvasApp {
     // 目制御用ボーン
     const eyeControlBone = this.skeleton.findBone('b_eye_control')
     if (eyeControlBone !== null) {
+      // TODO: なぜここでx,yが逆転するかが不明
+      //       おそらくSpineエディタ上での設定の問題を思われる。
       // x軸の更新: left-right: Max: 6, Min: -6
       const sizeX = (6 - -6) * vecNormalize.y
       eyeControlBone.x = eyeControlBone.data.x + sizeX * -1
