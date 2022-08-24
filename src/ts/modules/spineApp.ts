@@ -155,18 +155,6 @@ export class SpineApp implements spine.SpineCanvasApp {
       }
     }
 
-    // spineアニメーション展開中のcanvasの縦幅
-    // canvas.gl.drawingBufferHeight
-    // spineアニメーション展開中のcanvasの横幅
-    // canvas.gl.drawingBufferWidth
-
-    // クリック判定
-    if (canvas.input.buttonDown === true) {
-      // canvasのイベント状況を取得
-      console.log(canvas.input.mouseX)
-      console.log(canvas.input.mouseY)
-    }
-
     // レンダラーを取得
     const renderer = canvas.renderer
 
