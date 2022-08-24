@@ -67,6 +67,18 @@ export class SpineApp implements spine.SpineCanvasApp {
       x: canvas.gl.drawingBufferWidth / this.pixcelRato / 2,
       y: canvas.gl.drawingBufferHeight / this.pixcelRato / 2
     }
+    // 画面の中心・マウス位置のベクトルを算出
+    const vecPositoin = {
+      x: canvas.input.mouseX - center.x,
+      y: canvas.input.mouseY - center.y
+    }
+    // ベクトルのサイズを取得
+    const vecSize = Math.sqrt(vecPositoin.x ** 2 + vecPositoin.y ** 2)
+    // ベクトルを正規化
+    const vecNormalize = {
+      x: vecPositoin.x / vecSize,
+      y: vecPositoin.y / vecSize
+    }
 
     // 目制御用ボーン
     const eyeControlBone = this.skeleton.findBone('b_eye_control')
