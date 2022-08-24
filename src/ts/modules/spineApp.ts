@@ -84,26 +84,11 @@ export class SpineApp implements spine.SpineCanvasApp {
     const eyeControlBone = this.skeleton.findBone('b_eye_control')
     if (eyeControlBone !== null) {
       // x軸の更新: top-bottom: Max: 20, Min: 6
-      const newX =
-        eyeControlBone.x + ((canvas.input.mouseY - center.y) / 100) * -1
-      if (newX > 20) {
-        eyeControlBone.x = 20
-      } else if (newX < 6) {
-        eyeControlBone.x = 6
-      } else {
-        eyeControlBone.x = newX
-      }
       // y軸の更新: left-right: Max: 6, Min: -6
-      const newY =
-        eyeControlBone.y + ((canvas.input.mouseX - center.x) / 100) * -1
-
-      if (newY > 6) {
-        eyeControlBone.y = 6
-      } else if (newY < -6) {
-        eyeControlBone.y = -6
-      } else {
-        eyeControlBone.y = newY
-      }
+      const sizeX = (20 - 6) * vecNormalize.x
+      const sizeY = (6 - -6) * vecNormalize.y
+      eyeControlBone.x = eyeControlBone.data.x + sizeY * -1
+      eyeControlBone.y = eyeControlBone.data.y + sizeX * -1
     }
 
     // 顔制御用ボーン initial: x: 360, y: 1068
