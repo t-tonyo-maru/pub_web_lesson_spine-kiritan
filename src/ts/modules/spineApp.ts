@@ -67,104 +67,53 @@ export class SpineApp implements spine.SpineCanvasApp {
       x: canvas.gl.drawingBufferWidth / this.pixcelRato / 2,
       y: canvas.gl.drawingBufferHeight / this.pixcelRato / 2
     }
+    // 画面の中心・マウス位置のベクトルを算出
+    const vecPositoin = {
+      x: canvas.input.mouseX - center.x,
+      y: canvas.input.mouseY - center.y
+    }
+    // ベクトルのサイズを取得
+    const vecSize = Math.sqrt(vecPositoin.x ** 2 + vecPositoin.y ** 2)
+    // ベクトルを正規化
+    const vecNormalize = {
+      x: vecPositoin.x / vecSize,
+      y: vecPositoin.y / vecSize
+    }
 
     // 目制御用ボーン
     const eyeControlBone = this.skeleton.findBone('b_eye_control')
     if (eyeControlBone !== null) {
-      // x軸の更新: top-bottom: Max: 20, Min: 6
-      const newX =
-        eyeControlBone.x + ((canvas.input.mouseY - center.y) / 100) * -1
-      if (newX > 20) {
-        eyeControlBone.x = 20
-      } else if (newX < 6) {
-        eyeControlBone.x = 6
-      } else {
-        eyeControlBone.x = newX
-      }
-      // y軸の更新: left-right: Max: 6, Min: -6
-      const newY =
-        eyeControlBone.y + ((canvas.input.mouseX - center.x) / 100) * -1
-
-      if (newY > 6) {
-        eyeControlBone.y = 6
-      } else if (newY < -6) {
-        eyeControlBone.y = -6
-      } else {
-        eyeControlBone.y = newY
-      }
+      // TODO: なぜここでx,yが逆転するかが不明
+      //       おそらくSpineエディタ上での設定の問題を思われる。
+      // x軸の更新: left-right: Max: 6, Min: -6
+      const sizeX = (6 - -6) * vecNormalize.y
+      eyeControlBone.x = eyeControlBone.data.x + sizeX * -1
+      // y軸の更新: top-bottom: Max: 20, Min: 6
+      const sizeY = (20 - 6) * vecNormalize.x
+      eyeControlBone.y = eyeControlBone.data.y + sizeY * -1
     }
 
-    // 顔制御用ボーン
+    // 顔制御用ボーン initial: x: 360, y: 1068
     const faceControlBone = this.skeleton.findBone('b_tk_face_control_back')
     // 顔制御用ボーンの更新
     if (faceControlBone !== null) {
-      // initial: x: 360, y: 1068
-
       // x軸の更新: top-bottom: Max: 450, Min: 250
-      const newX =
-        faceControlBone.x +
-        Math.floor((canvas.input.mouseX - center.x) / this.delay)
-      if (newX > 450) {
-        faceControlBone.x = 450
-      } else if (newX < 250) {
-        faceControlBone.x = 250
-      } else {
-        faceControlBone.x = newX
-      }
-
+      const sizeX = (450 - 250) * vecNormalize.x
+      faceControlBone.x = faceControlBone.data.x + sizeX
       // y軸の更新: left-right: Max: 1140, Min: 962
-      const newY =
-        faceControlBone.y -
-        Math.floor((canvas.input.mouseY - center.y) / this.delay)
-      if (newY > 1140) {
-        faceControlBone.y = 1140
-      } else if (newY < 962) {
-        faceControlBone.y = 962
-      } else {
-        faceControlBone.y = newY
-      }
+      const sizeY = (1140 - 962) * vecNormalize.y
+      faceControlBone.y = faceControlBone.data.y + sizeY * -1
     }
 
-    // 体制御用ボーン
+    // 体制御用ボーン initial: x: 289 y: 825
     const bodyControlBone = this.skeleton.findBone('b_tk_body_control_back')
     if (bodyControlBone !== null) {
-      // initial: x: 289 y: 825
-
       // x軸の更新: top-bottom: Max: 360, Min: 220
-      const newX =
-        bodyControlBone.x +
-        Math.floor((canvas.input.mouseX - center.x) / this.delay)
-      if (newX > 360) {
-        bodyControlBone.x = 360
-      } else if (newX < 220) {
-        bodyControlBone.x = 220
-      } else {
-        bodyControlBone.x = newX
-      }
-
+      const sizeX = (360 - 220) * vecNormalize.x
+      bodyControlBone.x = bodyControlBone.data.x + sizeX
       // y軸の更新: left-right: Max: 916, Min: 780
-      const newY =
-        bodyControlBone.y -
-        Math.floor((canvas.input.mouseY - center.y) / this.delay)
-      if (newY > 916) {
-        bodyControlBone.y = 916
-      } else if (newY < 780) {
-        bodyControlBone.y = 780
-      } else {
-        bodyControlBone.y = newY
-      }
-    }
-
-    // spineアニメーション展開中のcanvasの縦幅
-    // canvas.gl.drawingBufferHeight
-    // spineアニメーション展開中のcanvasの横幅
-    // canvas.gl.drawingBufferWidth
-
-    // クリック判定
-    if (canvas.input.buttonDown === true) {
-      // canvasのイベント状況を取得
-      console.log(canvas.input.mouseX)
-      console.log(canvas.input.mouseY)
+      const sizeY = (916 - 780) * vecNormalize.y
+      bodyControlBone.y = bodyControlBone.data.y + sizeY * -1
     }
 
     // レンダラーを取得
