@@ -106,12 +106,10 @@ export class SpineApp implements spine.SpineCanvasApp {
       }
     }
 
-    // 顔制御用ボーン
+    // 顔制御用ボーン initial: x: 360, y: 1068
     const faceControlBone = this.skeleton.findBone('b_tk_face_control_back')
     // 顔制御用ボーンの更新
     if (faceControlBone !== null) {
-      // initial: x: 360, y: 1068
-
       // x軸の更新: top-bottom: Max: 450, Min: 250
       const newX =
         faceControlBone.x +
@@ -137,11 +135,9 @@ export class SpineApp implements spine.SpineCanvasApp {
       }
     }
 
-    // 体制御用ボーン
+    // 体制御用ボーン initial: x: 289 y: 825
     const bodyControlBone = this.skeleton.findBone('b_tk_body_control_back')
     if (bodyControlBone !== null) {
-      // initial: x: 289 y: 825
-
       // x軸の更新: top-bottom: Max: 360, Min: 220
       const sizeX = (360 - 220) * vecNormalize.x
       bodyControlBone.x = bodyControlBone.data.x + sizeX
