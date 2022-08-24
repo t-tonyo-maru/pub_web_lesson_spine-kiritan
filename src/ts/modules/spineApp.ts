@@ -111,28 +111,11 @@ export class SpineApp implements spine.SpineCanvasApp {
     // 顔制御用ボーンの更新
     if (faceControlBone !== null) {
       // x軸の更新: top-bottom: Max: 450, Min: 250
-      const newX =
-        faceControlBone.x +
-        Math.floor((canvas.input.mouseX - center.x) / this.delay)
-      if (newX > 450) {
-        faceControlBone.x = 450
-      } else if (newX < 250) {
-        faceControlBone.x = 250
-      } else {
-        faceControlBone.x = newX
-      }
-
+      const sizeX = (450 - 250) * vecNormalize.x
+      faceControlBone.x = faceControlBone.data.x + sizeX
       // y軸の更新: left-right: Max: 1140, Min: 962
-      const newY =
-        faceControlBone.y -
-        Math.floor((canvas.input.mouseY - center.y) / this.delay)
-      if (newY > 1140) {
-        faceControlBone.y = 1140
-      } else if (newY < 962) {
-        faceControlBone.y = 962
-      } else {
-        faceControlBone.y = newY
-      }
+      const sizeY = (1140 - 962) * vecNormalize.y
+      faceControlBone.y = faceControlBone.data.y + sizeY * -1
     }
 
     // 体制御用ボーン initial: x: 289 y: 825
