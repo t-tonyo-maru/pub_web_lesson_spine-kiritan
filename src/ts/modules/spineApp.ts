@@ -143,28 +143,11 @@ export class SpineApp implements spine.SpineCanvasApp {
       // initial: x: 289 y: 825
 
       // x軸の更新: top-bottom: Max: 360, Min: 220
-      const newX =
-        bodyControlBone.x +
-        Math.floor((canvas.input.mouseX - center.x) / this.delay)
-      if (newX > 360) {
-        bodyControlBone.x = 360
-      } else if (newX < 220) {
-        bodyControlBone.x = 220
-      } else {
-        bodyControlBone.x = newX
-      }
-
+      const sizeX = (360 - 220) * vecNormalize.x
+      bodyControlBone.x = bodyControlBone.data.x + sizeX
       // y軸の更新: left-right: Max: 916, Min: 780
-      const newY =
-        bodyControlBone.y -
-        Math.floor((canvas.input.mouseY - center.y) / this.delay)
-      if (newY > 916) {
-        bodyControlBone.y = 916
-      } else if (newY < 780) {
-        bodyControlBone.y = 780
-      } else {
-        bodyControlBone.y = newY
-      }
+      const sizeY = (916 - 780) * vecNormalize.y
+      bodyControlBone.y = bodyControlBone.data.y + sizeY * -1
     }
 
     // レンダラーを取得
